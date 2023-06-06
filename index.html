@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elite Contracting</title>
+    <link href="/css/main.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <script>
+      document.querySelectorAll(".section").forEach((section) => {
+        section.addEventListener("scroll", function () {
+          if (this.scrollTop > 0) {
+            this.classList.add("slide-in");
+          } else {
+            this.classList.remove("slide-in");
+          }
+        });
+      });
+    </script>
+    <style>
+      body {
+        background-color: black;
+      }
+
+      .overlay-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .about-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .form-area {
+        padding-top: 7%;
+      }
+      .row.single-form {
+        box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.5);
+      }
+      .left {
+        background: #e86710;
+        padding: 200px 98px;
+      }
+      .left h2 {
+        font-family: poppins;
+        color: #fff;
+        font-weight: 700;
+        font-size: 48px;
+      }
+      .left h2 span {
+        font-weight: 100;
+      }
+      .single-form {
+        background: rgb(248, 234, 175);
+      }
+      .right {
+        padding: 70px 100px;
+        position: relative;
+      }
+      .right i {
+        position: absolute;
+        font-size: 80px;
+        left: -27px;
+        top: 40%;
+        color: #fff;
+      }
+      .form-control {
+        border: 2px solid #000;
+      }
+      .right button {
+        border: none;
+        border-radius: 0;
+        background: black;
+        width: 180px;
+        color: #fff;
+        padding: 15px 0;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+      .right button:hover {
+        background-color: #e86710;
+      }
+
+      .bg-darkblk {
+        overflow: hidden;
+      }
+      .bg-darkblk img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+
+      .custom-list-group .list-group-item {
+        color: #fff; /* Light text color */
+        border-bottom: 2px solid #fff; /* Light border color */
+      }
+
+      .social-icons .icon-link:hover i {
+        transform: scale(1.2);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .slide-up {
+        opacity: 0;
+        transform: translateY(70px);
+        transition: opacity 0.5s ease 0.8s, transform 0.8s ease 0.8s;
+      }
+
+      .slide-up.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Slide-left animation */
+      .slide-left {
+        opacity: 0;
+        transform: translateX(-70px);
+        transition: opacity 0.5s ease, transform 0.8s ease;
+      }
+
+      .slide-left.slide-up {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Slide-right animation */
+      .slide-right {
+        opacity: 0;
+        transform: translateX(70px);
+        transition: opacity 0.5s ease, transform 0.8s ease;
+      }
+
+      .slide-right.slide-up {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Slide-down animation */
+      .slide-down {
+        opacity: 0;
+        transform: translateY(-70px);
+        transition: opacity 0.5s ease, transform 0.8s ease;
+      }
+
+      .slide-down.slide-up {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /*responsive*/
+
+      @media (min-width: 768px) and (max-width: 991px) {
+        .right i {
+          top: -52px;
+          transform: rotate(90deg);
+          left: 50%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .left {
+          padding: 90px 15px;
+          text-align: center;
+        }
+        .left h2 {
+          font-size: 25px;
+        }
+        .right {
+          padding: 25px;
+        }
+        .right i {
+          top: -52px;
+          transform: rotate(90deg);
+          left: 46%;
+        }
+        .right button {
+          width: 150px;
+          padding: 12px 0;
+        }
+      }
+
+      /* Keyframe animations */
+      @keyframes slideLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideRight {
+        0% {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideTop {
+        0% {
+          opacity: 0;
+          transform: translateY(100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideBottom {
+        0% {
+          opacity: 0;
+          transform: translateY(-100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Custom CSS */
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav
+      class="navbar navbar-expand-md fixed-top bg-darkblk border-bottom border-bottom-dark pt-4 pb-4 mb-5 slide-down"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler navbar-toggler-xs"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav fw-bold">
+            <a class="nav-link active text-primary" aria-current="page" href="#"
+              >Home</a
+            >
+            <a class="nav-link slideTop" href="#about">About</a>
+            <a class="nav-link slideTop" href="#gallery">Gallery</a>
+            <a class="nav-link slideTop" href="#contact">Contact</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+            <span class="nav-link text-light fw-bold slideTop"
+              >Request a Quote:</span
+            >
+            <a class="nav-link text-light" href="tel:4023679985">
+              <i
+                class="bi bi-telephone-fill bi-4x text-primary fw-bold me-2"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!------- HOME ------->
+    <section class="bg-darkblk section" id="home">
+      <div class="container-fluid">
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-9 col-xs-12 slide-left">
+            <img
+              src="/images/logo.jpeg"
+              class="img-fluid slideBottom"
+              alt="logo"
+            />
+          </div>
+        </div>
+        <div class="row justify-content-center text-center my-5">
+          <h3 class="text-primary fw-bold text-uppercase slide-right">
+            Residential Remodeling Contractor
+            <i class="bi bi-hammer text-secondary fw-bold"></i>
+          </h3>
+        </div>
+        <p>Lorem, ipsum.</p>
+      </div>
+    </section>
+
+    <!------- ABOUT ------->
+    <section class="bg-darkblk mt-5" id="about">
+      <div
+        class="container-xl position-relative g-0 p-0 slide-left"
+        id="slide-container-about"
+      >
+        <div class="row">
+          <div class="col-12 p-0">
+            <img
+              src="/images/job5.png"
+              class="img-fluid opacity-25"
+              alt="job example"
+            />
+          </div>
+        </div>
+        <div
+          class="position-absolute top-50 start-50 translate-middle text-center w-100"
+        >
+          <h2 class="text-light">About Elite Contracting</h2>
+        </div>
+      </div>
+      <div class="container-md text-center lh-2 width-50%">
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <p class="text-light mt-5 slide-down">
+              Elite Contracting is a specialized construction company with a
+              strong focus on providing high-quality services in excavating,
+              residential construction, concrete, tongue and groove systems, and
+              many others. Founded by a team of skilled professionals, they
+              excel in delivering innovative and tailor-made solutions to
+              clients across the construction industry.
+            </p>
+            <!-- offcanvas -->
+            <button
+              class="btn btn-outline-offyellow btn-sm justify-content-center mt-2 mb-5"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample"
+            >
+              Mission Statement
+            </button>
+            <div
+              class="offcanvas offcanvas-start bg-darkblk"
+              tabindex="-1"
+              id="offcanvasExample"
+              aria-labelledby="offcanvasExampleLabel"
+            >
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+              <div class="offcanvas-body text-light">
+                <div class="row">
+                  <div class="col-10">
+                    <p class="text-light">
+                      Our vision is to be the leading contracting company in our
+                      niche by delivering exceptional quality, innovation and
+                      reliability in every project we undertake. We will strive
+                      to continuously exceed our clients' expectations by
+                      providing unparalleled customer service, unparalleled
+                      workmanship, and unparalleled professionalism. Our team of
+                      skilled professionals will work collaboratively to create
+                      long-lasting relationships with our clients, suppliers and
+                      partners, building a reputation for integrity, honesty and
+                      accountability in all that we do. We will be committed to
+                      constantly growing our capabilities and adapting our
+                      business to meet the evolving needs of our industry, while
+                      maintaining our unwavering commitment to providing
+                      superior value and quality to all of our stakeholders. As
+                      a result, we will create a sustainable contracting
+                      business that is recognized as a trusted partner by our
+                      clients, employees and communities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-md text-center lh-2 width-50%">
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <h4 class="text-secondary fw-bold slide-right">
+                Why Choose Elite Contracting?
+              </h4>
+              <p class="text-light slide-left">
+                Elite Contracting's reputation as a reliable and trusted partner
+                in construction services stems from the owners' combined decade
+                of experience across multiple trades. This invaluable expertise,
+                coupled with their unwavering commitment to quality and customer
+                satisfaction, makes Elite Contracting an ideal choice for all of
+                your construction needs.
+              </p>
+            </div>
+          </div>
+        </div>
+        <a
+          class="btn btn-outline-offyellow btn-sm justify-content-center my-3 rounded-pill slideRight"
+          href="#contact"
+        >
+          Request A Quote
+        </a>
+      </div>
+    </section>
+
+    <!------- GALLERY ------->
+    <section class="bg-darkblk mt-5 section" id="gallery">
+      <div
+        class="container-fluid d-flex justify-content-center align-items-center flex-column"
+      >
+        <h2 class="text-light mt-4 mb-4 fw-bold slide-up">Gallery</h2>
+      </div>
+      <!-- carousel -->
+      <div id="carouselExampleDark" class="carousel carousel-dark mt-4">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img
+              src="/images/job2.jpeg"
+              class="d-block w-100"
+              alt="job example"
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img
+              src="/images/job3.jpeg"
+              class="d-block w-100"
+              alt="job example"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/images/job8.png"
+              class="d-block w-100"
+              alt="job example"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!------- CONTACT ------->
+    <section id="contact" class="section">
+      <div class="form-area slide-left">
+        <div class="container">
+          <div class="row single-form g-0">
+            <div class="col-sm-12 col-lg-6">
+              <div class="left">
+                <h2>
+                  <span class="slide-up">Contact Us For Your Next Project</span>
+                </h2>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="right">
+                <i class="bi bi-caret-left-fill text-lightyel"></i>
+                <form>
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                    />
+                  </div>
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                    />
+                  </div>
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                    />
+                  </div>
+                  <div class="mb-1">
+                    <label for="exampleInputPassword" class="form-label"
+                      >Message</label
+                    >
+                    <textarea
+                      type="password"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Include job details..."
+                    ></textarea>
+                  </div>
+                  <button type="submit" class="btn-warning">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section id="footer" class="border-top border-1 border-secondary">
+      <div class="card border-0 slide-right">
+        <div class="d-flex justify-content-center bg-darkblk">
+          <img
+            src="/images/logo2.png"
+            class="card-img-top pt-5"
+            alt="logo"
+            style="width: 50%"
+          />
+        </div>
+        <div class="card-body bg-darkblk">
+          <p class="card-text text-light text-center">
+            Phone:
+            <span class="text-primary">
+              <a href="tel:4023679985" class="text-decoration-none"
+                >402-367-9985</a
+              >
+            </span>
+          </p>
+          <div
+            class="card-text text-center mt-0 mb-2 d-flex justify-content-center"
+          >
+            <a href="#" class="me-2"
+              ><i class="bi bi-facebook fs-4 mx-2"></i
+            ></a>
+            <a href="#" class="me-2"
+              ><i class="bi bi-instagram fs-4 mx-2"></i
+            ></a>
+            <a href="#"><i class="bi bi-linkedin fs-4 mx-2"></i></a>
+          </div>
+
+          <p class="card-title text-light text-center small text-xs">
+            Copyright © 2023 by Brandon Roberts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function animateElements() {
+        const elements = document.querySelectorAll(".slide-up");
+        elements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementBottom = element.getBoundingClientRect().bottom;
+          const windowHeight = window.innerHeight;
+          const isElementInView =
+            elementTop < windowHeight && elementBottom > 0;
+
+          if (isElementInView) {
+            element.classList.add("show");
+          } else {
+            element.classList.remove("show");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", animateElements);
+    </script>
+
+    <script>
+      function checkSlide() {
+        const elements = document.querySelectorAll(
+          ".slide-left, .slide-right, .slide-down"
+        );
+        elements.forEach((element) => {
+          const slideInAt =
+            window.scrollY + window.innerHeight - element.clientHeight / 2;
+          const elementBottom = element.offsetTop + element.clientHeight;
+          const isHalfShown = slideInAt > element.offsetTop;
+          const isNotScrolledPast = window.scrollY < elementBottom;
+          if (isHalfShown && isNotScrolledPast) {
+            element.classList.add("slide-up");
+          } else {
+            element.classList.remove("slide-up");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", debounce(checkSlide));
+
+      function debounce(func, wait = 20) {
+        let timeout;
+        return function (...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => {
+            func.apply(this, args);
+          }, wait);
+        };
+      }
+
+      checkSlide();
+    </script>
+  </body>
+</html>
