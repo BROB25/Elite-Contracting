@@ -1,0 +1,19 @@
+// custom  variables
+$primary: #e86710;
+
+// import the functions & variables
+@import "/Users/BROB/Desktop/Websites/Elite Contracting/node_modules/bootstrap/scss/_functions.scss";
+@import "/Users/BROB/Desktop/Websites/Elite Contracting/node_modules/bootstrap/scss/_variables.scss";
+
+// custom theme map
+$custom-theme-colors: (
+  "darkblk": black,
+  "offyellow": #f9dd76ea,
+  "lightyel": rgb(248, 234, 175)
+);
+
+// merging theme colors and custom colors
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// import bootstrap
+@import '/Users/BROB/Desktop/Websites/Elite Contracting/node_modules/bootstrap/scss/bootstrap.scss';
